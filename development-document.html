@@ -147,7 +147,8 @@
       <pre><code>
 "&lt;方塊名稱&gt;": {
   "drops": ["&lt;掉落物&gt;"],
-  "display-emoji": "&lt;emoji&gt;"
+  "display-emoji": "&lt;emoji&gt;",
+  "events": ["&lt;event&gt;"]
 }
       </code></pre>
     </div>
@@ -174,6 +175,7 @@
     <tr><td>&lt;生物名稱&gt;.display-emoji</td><td>str</td><td>顯示的表情符號</td></tr>
     <tr><td>&lt;方塊名稱&gt;.drops</td><td>list</td><td>掉落物</td></tr>
     <tr><td>&lt;方塊名稱&gt;.display-emoji</td><td>str</td><td>顯示的表情符號</td></tr>
+    <tr><td>&lt;方塊名稱&gt;.events</td><td>list</td><td>觸發事件(可不填)</td></tr>
     <tr><td>&lt;物品名稱&gt;.type</td><td>list</td><td>物品屬性(food為食物)</td></tr>
     <tr><td>&lt;物品名稱&gt;.gen</td><td>dict</td><td>物品食物屬性(非食物不填)</td></tr>
     <tr><td>&lt;物品名稱&gt;.gen.health</td><td>int</td><td>食物回復血量</td></tr>
@@ -269,9 +271,10 @@
       }
     },
     "block": {
-      "stone": {
-        "drops": ["bone"],
-        "display-emoji": "🦴"
+      "tnt": {
+        "drops": ["tnt"],
+        "display-emoji": "🧨",
+        "events": ["explode"]
       },
       "soil": {
         "drops": [],
