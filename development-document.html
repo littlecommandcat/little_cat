@@ -77,8 +77,8 @@
       <ul>
         <li><a href="#required">必填欄位</a></li>
         <li><a href="#optional">生物物品註冊</a></li>
-        <li><a href="#example">完整範例</a></li>
         <li><a href="#rules">驗證規則</a></li>
+        <li><a href="#example">完整範例</a></li>
       </ul>
     </nav>
   </div>
@@ -195,8 +195,7 @@
       <pre><code>
 "&lt;生物名稱&gt;": {
     "chunk": {
-        "max":&lt;區塊最多生成數量&gt;,
-        "min":&lt;區塊最少生成數量&gt;
+        "max":&lt;區塊最多生成數量&gt;
     },
   "type": ["&lt;type&gt;"]
 }
@@ -208,8 +207,7 @@
       <pre><code>
 "&lt;方塊名稱&gt;": {
     "chunk": {
-        "max":&lt;區塊最多生成數量&gt;,
-        "min":&lt;區塊最少生成數量&gt;
+        "max":&lt;區塊最多生成數量&gt;
     },
     "type": ["&lt;type&gt;"]
 }
@@ -220,11 +218,9 @@
     <tr><th>欄位</th><th>型態</th><th>說明</th></tr>
     <tr><td>&lt;生物名稱&gt;.chunk</td><td>dict</td><td>區塊生成規則</td></tr>
     <tr><td>&lt;生物名稱&gt;.chunk.max</td><td>int</td><td>區塊最多生成數量</td></tr>
-    <tr><td>&lt;生物名稱&gt;.chunk.min</td><td>int</td><td>區塊最少生成數量</td></tr>
     <tr><td>&lt;生物名稱&gt;.type</td><td>list</td><td>生物屬性</td></tr>
     <tr><td>&lt;方塊名稱&gt;.chunk</td><td>dict</td><td>區塊生成規則</td></tr>
     <tr><td>&lt;方塊名稱&gt;.chunk.max</td><td>int</td><td>區塊最多生成數量</td></tr>
-    <tr><td>&lt;方塊名稱&gt;.chunk.min</td><td>int</td><td>區塊最少生成數量</td></tr>
     <tr><td>&lt;方塊名稱&gt;.type</td><td>list</td><td>方塊屬性</td></tr>
   </table>
 </section>
@@ -318,22 +314,19 @@
     "animal": {
       "cat": {
         "chunk": {
-          "max": 2,
-          "min": 1
+          "max": 2
         },
         "type": ["normal"]
       },
       "dog": {
         "chunk": {
-          "max": 2,
-          "min": 1
+          "max": 2
         },
         "type": ["normal"]
       },
       "fox": {
         "chunk": {
-          "max": 1,
-          "min": 1
+          "max": 1
         },
         "type": ["default"]
       }
@@ -341,15 +334,13 @@
     "block": {
       "stone": {
         "chunk": {
-          "max": 3,
-          "min": 1
+          "max": 3
         },
         "type": ["default"]
       },
       "soil": {
         "chunk": {
-          "max": 1,
-          "min": 1
+          "max": 1
         },
         "type": ["default"]
       }
