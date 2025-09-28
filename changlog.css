@@ -62,3 +62,25 @@
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
     @media (max-width: 768px) { h1 { font-size: 2rem; } .header-container { flex-direction: column; align-items: flex-start; } nav ul { flex-direction: column; gap: 10px; }}
+
+.version-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.version-item > a {
+  font-weight: bold;
+  color: #66ffcc;
+}
+
+.update-list {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-top: 5px;
+}
+
+.update-list li {
+  color: #ccc;
+  font-size: 0.95rem;
+  margin-bottom: 3px;
+}

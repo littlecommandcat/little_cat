@@ -23,10 +23,11 @@
   <div class="container header-container">
     <div class="logo">
         <img src="cat.png" alt="小喵喵 Logo" style="height: 40px; vertical-align: middle;">
-        <span style="margin-left: 8px; vertical-align: middle;">小喵喵RPG模組文檔</span>
+        <span style="margin-left: 8px; vertical-align: middle;">RPG模組文檔</span>
     </div>
     <nav>
       <ul>
+        <li><a href="index.html">回到主畫面</a></li>
         <li><a href="#required">必填欄位</a></li>
         <li><a href="#optional">生物物品註冊</a></li>
         <li><a href="#gen-rule">生物方塊生成規則</a></li>
@@ -77,8 +78,8 @@
     <tr><td>data.item</td><td>dict</td><td>物品資料</td></tr>
     <tr><td>rule.animal</td><td>dict</td><td>生物生成規則</td></tr>
     <tr><td>rule.block</td><td>dict</td><td>方塊生成規則</td></tr>
-    <tr><td>type</td><td>list</td><td>類型註冊列表(預設內含default、food)</td></tr>
-    <tr><td>events</td><td>dict</td><td>事件註冊列表(預設請查看<a href="#new-event">事件說明</a>)</td></tr>
+    <tr><td>type</td><td>list</td><td>類型註冊列表(預設類型：default、food)</td></tr>
+    <tr><td>events</td><td>dict</td><td>事件註冊列表(預設事件請查看<a href="#new-event">事件說明與註冊</a>)</td></tr>
   </table>
 </section>
 
@@ -198,9 +199,9 @@
   </div>
   <table>
     <tr><th>欄位</th><th>型態</th><th>說明</th></tr>
-    <tr><td>&lt;事件名稱&gt;.core</td><td>str</td><td>使用核心事件(de-health、in-health)</td></tr>
-    <tr><td>預設事件</td><td>str</td><td>不須註冊即可使用(explode、hurt、recover)</td></tr>
-    <tr><td>core</td><td>str</td><td>de-health、in-health則一使用</td></tr>
+    <tr><td>&lt;事件名稱&gt;.core</td><td>str</td><td>引用核心事件：de-health或in-health</td></tr>
+    <tr><td>預設事件</td><td>str</td><td>不須註冊即可使用的預設事件：explode、hurt、recover</td></tr>
+    <tr><td>core</td><td>str</td><td>de-health、in-health請則一輸入 &lt;事件名稱&gt;.core 使用</td></tr>
   </table>
 </section>
 
