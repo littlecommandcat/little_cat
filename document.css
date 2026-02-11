@@ -58,7 +58,26 @@
     .cta .btn-primary { background: #000; color: #66ffcc; }
 
     footer { text-align: center; padding: 20px; font-size: 0.8rem; background: #111; }
-
+    
+    .warning-card {
+      border-left: 5px solid #ffcc00;
+      background-color: #fffde7;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 4px;
+      color: #5d4037;
+    }
+    .warning-card strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #f57f17;
+      font-size: 1.1em;
+    }
+    .warning-card ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
     @media (max-width: 768px) { h1 { font-size: 2rem; } .header-container { flex-direction: column; align-items: flex-start; } nav ul { flex-direction: column; gap: 10px; }}
