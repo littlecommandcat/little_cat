@@ -30,6 +30,7 @@
         <li><a href="#syntax">核心語法</a></li>
         <li><a href="#control-flow">流程控制</a></li>
         <li><a href="#functions">函式定義</a></li>
+        <li><a href="#method">方法介紹</a></li>
         <li><a href="#libs">內建庫</a></li>
         <li><a href="#example">完整範例</a></li>
       </ul>
@@ -38,7 +39,7 @@
 </header>
 
 <section class="hero container">
-  <p>本頁面說明分身機器人簡易語言的語法規範、內置函數以及安全限制。<br>當前直譯器穩定版本為 <b>v3.6</b>。</p>
+  <p>本頁面說明分身機器人簡易語言的語法規範、內置函數以及安全限制。<br>當前直譯器穩定版本為 <b>v3.9</b>。</p>
 </section>
 
 <section id="syntax" class="container">
@@ -83,7 +84,7 @@ endif;</code></pre>
     <ul>
       <li><code>if</code> 與 <code>elif</code> 後方條件需要大括號包覆且結尾分號</li>
       <li>必須確保 <code>endif</code> 存在，否則直譯器將無法正確解析區塊邊界。</li>
-      <li>條件運算支援變數值、比較運算 (<code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>) 與邏輯運算 (<code>&&</code>, <code>||</code>)。</li>
+      <li>條件運算支援變數值與比較運算 (<code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>) 。</li>
     </ul>
   </div>
 </section>
@@ -123,38 +124,73 @@ end;</code></pre>
   </div>
 </section>
 
+<section id="method" class="container">
+  <h2>方法 (Method)</h2>
+  <p>使用 <code>method</code> 封裝應用邏輯。<b>不可由使用者自訂。</b></p>
+    <div class="card code-block">
+      <h3>如何調用方法</h3>
+      <button class="copy-btn">複製</button>
+      <pre><code>begin;
+  // 不須使用 call 關鍵字調用
+  wait{0.2}; // 等待0.2秒
+  val1 = min{1 2}; // 取兩者最小值
+  val2 = max{1 2}; // 取兩者最大值
+  val3 = abs{-5}; // 取數值之絕對值
+  // output {};
+end;</code></pre>
+    </div>
+  </div>
+
+  <div class="warning-card">
+    <strong>⚠️ 方法規則與限制：</strong>
+    <ul>
+      <li><b>參數：</b>置於 <code>{}</code> 中，彼此以<b>空格</b>分隔。</li>
+      <li><b>回傳：</b>依照各方法規定。</li>
+      <li><b>嚴格禁止：</b>在 <code>func</code> 區塊內使用 <code>wait</code> 指令。</li>
+    </ul>
+  </div>
+</section>
+
+
 <section id="libs" class="container">
   <h2>內建庫與函數註冊</h2>
   <table>
-    <tr><th>類別</th><th>函數/屬性</th><th>型態</th><th>說明</th></tr>
-    <tr><td rowspan="2">
+    <tr><th>類別</th><th>函數/屬性</th><th>回傳型態</th><th>類型</th><th>說明</th></tr>
+    <tr><td rowspan="4">
       <b>math</b>
-        </td><td>math.pi / math.e</td><td>float</td><td>圓周率與自然常數</td></tr>
-        <tr><td>math.add{a b}</td><td>func</td><td>回傳 a + b 的結果</td></tr>
-    <tr><td rowspan="3">
+        </td><td>math.pi / math.e</td><td>float</td><td>variable</td><td>圓周率與自然常數</td></tr>
+        <tr><td>math.add{a b}</td><td>float</td><td><a href="#functions">function</a></td><td>回傳 a + b 的結果</td></tr>
+        <tr><td>math.multiple{a b}</td><td>float</td><td><a href="#functions">function</a></td><td>回傳 a * b 的結果</td></tr>
+        <tr><td>math.subtruct{a b}</td><td>float</td><td><a href="#functions">function</a></td><td>回傳 a - b 的結果</td></tr>
+    <tr><td rowspan="5">
       <b>message</b>
-        </td><td>message.content</td><td>str</td><td>觸發程式的訊息內容</td></tr>
-        <tr><td>message.username</td><td>str</td><td>訊息作者名稱</td></tr>
-        <tr><td>message.id</td><td>str</td><td>訊息 ID</td></tr>
+        </td><td>message.username</td><td>str</td><td>variable</td><td>訊息作者名稱</td></tr>
+        <tr><td>message.userid</td><td>int</td><td>variable</td><td>訊息作者 ID</td></tr>
+        <tr><td>message.id</td><td>int</td><td>variable</td><td>訊息 ID</td></tr>
+        <tr><td>message.content</td><td>str</td><td>variable</td><td>觸發程式的訊息內容</td></tr>
+        <tr><td>message.createat</td><td>float</td><td>variable</td><td>訊息發送時間</td></tr>
     <tr><td rowspan="6">
       <b>list</b>
-        </td><td>list.add{list val}</td><td>func</td><td>在列表末尾新增一個元素</td></tr>
-        <tr><td>list.pop{list idx}</td><td>func</td><td>移除並回傳指定索引的元素</td></tr>
-        <tr><td>list.get{list idx}</td><td>func</td><td>取得指定索引的元素內容</td></tr>
-        <tr><td>list.count{list str}</td><td>func</td><td>取得指定元素的數量</td></tr>
-        <tr><td>list.length{list}</td><td>int</td><td>取得列表總長度</td></tr>
-        <tr><td>list.random{list n}</td><td>val/list</td><td>隨機抽取 n 個元素 (n 可省略)</td></tr>
+        </td><td>list.add{list val}</td><td>none</td><td><a href="#method">method</a></td><td>在列表末尾新增一個元素</td></tr>
+        <tr><td>list.pop{list idx}</td><td>none</td><td><a href="#method">method</a></td><td>移除並回傳指定索引的元素</td></tr>
+        <tr><td>list.get{list idx}</td><td>any</td><td><a href="#method">method</a></td><td>取得指定索引的元素內容</td></tr>
+        <tr><td>list.count{list str}</td><td>int</td><td><a href="#method">method</a></td><td>取得指定元素的數量</td></tr>
+        <tr><td>list.length{list}</td><td>int</td><td><a href="#method">method</a></td><td>取得列表總長度</td></tr>
+        <tr><td>list.random{list n}</td><td>list</td><td><a href="#method">method</a></td><td>隨機抽取 n 個元素 (n 可省略)</td></tr>
     <tr><td rowspan="4">
       <b>string</b>
-        </td><td>str.upper{text}</td><td>str</td><td>轉為全大寫</td></tr>
-        <tr><td>str.lower{text}</td><td>str</td><td>轉為全小寫</td></tr>
-        <tr><td>str.replace{text a b}</td><td>list</td><td>以指定文字a取代文字b</td></tr>
-        <tr><td>str.split{text sep}</td><td>list</td><td>以指定字串分割文字</td></tr>
-    <tr><td rowspan="3">
-      <b>system</b>
-        </td><td>turntype{val type}</td><td>func</td><td>轉換型態 (str, int, float, list)</td></tr>
-        <tr><td>type{val}</td><td>func</td><td>確認變數型態</td></tr>
-        <tr><td>wait{time}</td><td>func</td><td>暫停執行 (限制 0.1 ~ 0.5 秒)</td></tr>
+        </td><td>str.upper{text}</td><td>str</td><td><a href="#method">method</a></td><td>轉為全大寫</td></tr>
+        <tr><td>str.lower{text}</td><td>str</td><td><a href="#method">method</a></td><td>轉為全小寫</td></tr>
+        <tr><td>str.replace{text a b}</td><td>list</td><td><a href="#method">method</a></td><td>以指定文字a取代文字b</td></tr>
+        <tr><td>str.split{text sep}</td><td>list</td><td><a href="#method">method</a></td><td>以指定字串分割文字</td></tr>
+    <tr><td rowspan="6">
+      <b>system(<a href="#method">method</a>)</b>
+        </td><td>turntype{val type}</td><td>any</td><td><a href="#method">method</a></td><td>轉換型態 (str, int, float, list)</td></tr>
+        <tr><td>type{val}</td><td>str</td><td><a href="#method">method</a></td><td>確認變數型態</td></tr>
+        <tr><td>wait{time}</td><td>none</td><td><a href="#method">method</a></td><td>暫停執行 (限制 0.1 ~ 0.5 秒)</td></tr>
+        <tr><td>min{val val}</td><td>float</td><td><a href="#method">method</a></td><td>取兩者最小值</td></tr>
+        <tr><td>max{val val}</td><td>float</td><td><a href="#method">method</a></td><td>取兩者最大值</td></tr>
+        <tr><td>abs{val}</td><td>float</td><td><a href="#method">method</a></td><td>取數值之絕對值</td></tr>
   </table>
 </section>
 
@@ -167,6 +203,7 @@ end;</code></pre>
       <li><b>迴圈結構：</b><code>for</code> 總數上限 3 個，最大巢狀深度為 2 層。</li>
       <li><b>迭代次數：</b>單次 <code>for</code> 迴圈迭代次數上限為 5 次。</li>
       <li><b>語法嚴謹：</b>遺漏分號 <code>;</code> 或關鍵字邊界將導致直譯器報錯並中止執行。</li>
+      <li><b>特殊語法：</b>字串相加、列出lib內容(&lt;lib&gt;.variables &lt;lib&gt;.functions)</li>
     </ul>
   </div>
 </section>
