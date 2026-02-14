@@ -48,10 +48,15 @@
     <button class="copy-btn">複製</button>
     <pre><code>#load &lt;lib&gt; // 載入內建庫
 begin; // 主程式開始
-  // 變數賦值
-  val = 100;
-  // 輸出結果 (必填)
-  output {"結果是: " + val};
+  try; // 嘗試區塊
+    // 變數賦值
+    val = 100;
+    // 輸出結果 (必填)
+    output {"結果是: " + val};
+  except {error}; // 將錯誤訊息放進error變數
+    output {"Error" + error}; // 用輸出而非錯誤訊息回傳以免意外終止程式
+  // except; 不進行變數賦值
+  endtry;
 end; // 主程式結束</code></pre>
   </div>
   <table>
@@ -61,6 +66,7 @@ end; // 主程式結束</code></pre>
     <tr><td>output</td><td>output {content};</td><td>設定程式最終回傳內容，僅執行一次</td></tr>
     <tr><td>//</td><td>// 註解內容</td><td>單行註解，執行時會被忽略</td></tr>
     <tr><td>;</td><td>res = a + b;</td><td>指令結尾必須加上分號（結構關鍵字除外）</td></tr>
+    <tr><td>try / except / endtry</td><td>try; ... except; ... endtry;</td><td>捕捉區塊內的錯誤且不使用意外終止程式</td></tr>
   </table>
 </section>
 
