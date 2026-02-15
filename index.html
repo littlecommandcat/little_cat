@@ -13,7 +13,7 @@
   <meta property="og:image" content="cat.png">
   <link rel="icon" href="cat.png" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="index.css">
+  <link rel="stylesheet" type="text/css" href="style/index.css">
 </head>
 <body>
 
@@ -26,8 +26,8 @@
 
       <nav>
         <ul>
-          <li><a href="#features">功能</a></li>
           <li><a href="#about">關於</a></li>
+          <li><a href="#features">功能</a></li>
           <li><a href="#terms">條款</a></li>
           <li><a href="#invite">邀請</a></li>
           <li><a href="rpg-development-document-v1.5.html">RPG開發文檔(Latest)</a></li>
@@ -141,32 +141,6 @@
     <p>© 2026 小喵喵 Discord Bot. All rights reserved.</p>
   </footer>
 
-  <script>
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    });
-
-    document.querySelectorAll('section').forEach(section => {
-      observer.observe(section);
-    });
-
-    const buttons = document.querySelectorAll('#inviteBtn, #inviteBtnBottom');
-    buttons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.body.classList.add('fade-out-all');
-        const overlay = document.createElement('div');
-        overlay.className = 'blue-overlay';
-        document.body.appendChild(overlay);
-
-        setTimeout(() => {
-          window.location.href = "https://discord.com/oauth2/authorize?client_id=1144161789832069141";
-        }, 1000);
-      });
-    });
-  </script>
+  <script src="script/redirect.js"></script>
 </body>
 </html>

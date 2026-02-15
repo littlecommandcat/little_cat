@@ -14,7 +14,7 @@
   <link rel="icon" href="cat.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" type="text/css" href="index.css">
+  <link rel="stylesheet" type="text/css" href="style/index.css">
 </head>
 
 <body>
@@ -66,14 +66,6 @@
     <p>© 2026 貓貓 | 小喵喵 Discord Bot 開發者</p>
   </footer>
 
-  <script>
-    // 捲動動畫
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    });
-    document.querySelectorAll('section').forEach(section => observer.observe(section));
-  </script>
+  <script src="script/scroll.js"></script>
 </body>
 </html>
