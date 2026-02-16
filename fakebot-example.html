@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>分身機器人開發文檔</title>
+
+  <meta name="description" content="小喵喵是一款強大的 Discord 機器人，支援音樂播放、管理功能、客服單與安全系統。" />
+  <meta name="keywords" content="小喵喵, Discord 機器人, Discord Bot, 音樂機器人" />
+  <meta property="og:title" content="小喵喵分身機器人模組文檔" />
+  <meta property="og:description" content="小喵喵分身機器人教學文檔" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="cat.png">
+  <link rel="icon" href="cat.png" type="image/x-icon" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="style/document.css">
+</head>
+<body>
+  <header>
+
+    <div class="container header-container">
+      <div class="logo">
+          <img src="cat.png" alt="小喵喵 Logo" style="height: 40px; vertical-align: middle;">
+          <span style="margin-left: 8px; vertical-align: middle;">分身機器人文檔</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">主頁面</a></li>
+          <li><a href="#syntax">核心語法</a></li>
+          <li><a href="#control-flow">流程控制</a></li>
+          <li><a href="#functions">函式定義</a></li>
+          <li><a href="#method">方法介紹</a></li>
+          <li><a href="#libs">內建庫</a></li>
+          <li><a href="#example">完整範例</a></li>
+          <li><a href="fakebot-function-generator.html">生成器</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero container">
+    <p>本頁面說明分身機器人簡易且開發者提供的範例。<br>當前直譯器穩定版本為 <b>v4.1.0+</b>。</p>
+  </section>
+
+  <section id="example" class="container">
+    <h2>HttpCat程式範例</h2>
+    <div class="code-block">
+      <button class="copy-btn">複製</button>
+      <pre><code>// Provider: command_cat
+
+#load &lt;message&gt;
+begin;
+    msg = message.content;
+    if {str.count{msg ' '} == 0};
+        output{'請附帶一個http code'};
+    endif;
+    msg_list = str.split{msg ' '};
+    code = list.get{msg_list 1};
+    try;
+        code = turntype{code int};
+    except;
+        output{'附帶的code必須為整數'};
+    endtry;
+    if {code &lt; 100 or code &gt; 599};
+        output{'附帶的code範圍必須為100~599'};
+    endif;
+    output{'https://http.cat/' + code};
+end;</code></pre>
+    </div>
+
+    <h2>HttpDog程式範例</h2>
+    <div class="code-block">
+      <button class="copy-btn">複製</button>
+      <pre><code>// Provider: creeperdev.me
+
+#load &lt;message&gt;
+begin;
+    msg = message.content;
+    if {str.count{msg ' '} == 0};
+        output{'請附帶一個http code'};
+    endif;
+    msg_list = str.split{msg ' '};
+    code = list.get{msg_list 1};
+    try;
+        code = turntype{code int};
+    except;
+        output{'附帶的code必須為整數'};
+    endtry;
+    if {code &lt; 100 or code &gt; 599};
+        output{'附帶的code範圍必須為100~599'};
+    endif;
+    output{'https://http.dog/' + code};
+end;</code></pre>
+    </div>
+  </section>
+
+
+  <!-- <section id="invite" class="cta">
+    <h2>準備好開始使用了嗎？</h2>
+    <a href="fakebot-function-generator.html">
+      <button class="btn-primary">立即使用生成器</button>
+    </a>
+  </section> -->
+
+
+  <footer>
+    <p>© 2026 小喵喵 Discord Bot. All rights reserved.</p>
+  </footer>
+
+  <script src="script/copy.js"></script>
+</body>
+</html>
