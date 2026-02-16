@@ -40,7 +40,7 @@
   </header>
 
   <section class="hero container">
-    <p>本頁面說明分身機器人簡易語言的語法規範、內置函數以及安全限制。<br>當前直譯器穩定版本為 <b>v3.9</b>。</p>
+    <p>本頁面說明分身機器人簡易語言的語法規範、內置函數以及安全限制。<br>當前直譯器穩定版本為 <b>v4.1.0+</b>。</p>
   </section>
 
   <section id="syntax" class="container">
@@ -180,7 +180,7 @@
           <tr><td>math.add{a b}</td><td>float</td><td><a href="#functions">function</a></td><td>回傳 a + b 的結果</td></tr>
           <tr><td>math.multiple{a b}</td><td>float</td><td><a href="#functions">function</a></td><td>回傳 a * b 的結果</td></tr>
           <tr><td>math.subtruct{a b}</td><td>float</td><td><a href="#functions">function</a></td><td>回傳 a - b 的結果</td></tr>
-      <tr><td rowspan="5">
+      <tr><td rowspan="7">
         <b>message lib</b>
           </td><td>message.username</td><td>str</td><td>variable</td><td>訊息作者名稱</td></tr>
           <tr><td>message.userid</td><td>int</td><td>variable</td><td>訊息作者 ID</td></tr>
@@ -193,6 +193,10 @@
         <b>requests lib</b>
           </td><td>requests.get{url headers params}</td><td>data</td><td><a href="#functions">function</a></td><td>進行get並附帶headers和params</td></tr>
           <tr><td>requests.post{url headers json}</td><td>data</td><td><a href="#functions">function</a></td><td>進行post並附帶headers和json</td></tr>
+      <tr><td rowspan="2">
+        <b>time lib</b>
+          </td><td>time.timestamp</td><td>float</td><td>variable</td><td>取得目前的timestamp</td></tr>
+          <tr><td>time.asctime</td><td>str</td><td>variable</td><td>取得目前的asctime</td></tr>
       <tr><td rowspan="6">
         <b>list</b>
           </td><td>list.add{list val}</td><td>none</td><td><a href="#method">method</a></td><td>在列表末尾新增一個元素</td></tr>
@@ -215,6 +219,7 @@
           <tr><td>min{val val}</td><td>float</td><td><a href="#method">method</a></td><td>取兩者最小值</td></tr>
           <tr><td>max{val val}</td><td>float</td><td><a href="#method">method</a></td><td>取兩者最大值</td></tr>
           <tr><td>abs{val}</td><td>float</td><td><a href="#method">method</a></td><td>取數值之絕對值</td></tr>
+          <tr><td>round{val val}</td><td>float</td><td><a href="#method">method</a></td><td>取數值val後五捨六入</td></tr>
     </table>
   </section>
 
@@ -228,6 +233,7 @@
         <li><b>迭代次數：</b>單次 <code>for</code> 迴圈迭代次數上限為 5 次。</li>
         <li><b>語法嚴謹：</b>遺漏分號 <code>;</code> 或關鍵字邊界將導致直譯器報錯並中止執行。</li>
         <li><b>特殊語法：</b>字串相加、列出lib內容(&lt;lib&gt;.variables &lt;lib&gt;.functions)、字串可用\n換行</li>
+        <li><b>嚴格賦值：</b>某些語法僅接受在外側定義後再傳入。</li>
       </ul>
     </div>
   </section>
@@ -236,8 +242,8 @@
     <h2>完整程式範例</h2>
     <div class="code-block">
       <button class="copy-btn">複製</button>
-      <pre><code>#load &lt;math&gt;
-  #load &lt;message&gt;
+      <pre><code>#load &lt;time&gt;
+#load &lt;message&gt;
 
   func welcome {name};
     res = "你好, " + name;
@@ -249,10 +255,11 @@
     greet = call welcome{user};
       
     for i in 3;
-      output_msg = greet + " 第 " + i + " 次打招呼";
+      nowstamp = round{time.timestamp 0};
+      output_msg = greet + " 第 " + i + " 次打招呼\n現在的timestamp是:" + nowtimestamp;
     endfor;
       
-    output {output_msg '&lt;br&gt;你好啊'};
+    output {output_msg};
   end;</code></pre>
     </div>
   </section>
