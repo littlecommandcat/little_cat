@@ -206,13 +206,22 @@
           <tr><td>list.count{list str}</td><td>int</td><td><a href="#method">method</a></td><td>取得指定元素的數量</td></tr>
           <tr><td>list.length{list}</td><td>int</td><td><a href="#method">method</a></td><td>取得列表總長度</td></tr>
           <tr><td>list.random{list n}</td><td>list</td><td><a href="#method">method</a></td><td>隨機抽取 n 個元素 (n 可省略)</td></tr>
+      <tr><td rowspan="7">
+        <b>dict</b>
+          </td><td>dict.set{dict key item}</td><td>none</td><td><a href="#method">method</a></td><td>在字典設定 key: items</td></tr>
+          </td><td>dict.clear{dict}</td><td>none</td><td><a href="#method">method</a></td><td>清除整個字典</td></tr>
+          <tr><td>dict.get{dict key}</td><td>any</td><td><a href="#method">method</a></td><td>回傳指定key的item</td></tr>
+          <tr><td>dict.length{dict}</td><td>int</td><td><a href="#method">method</a></td><td>回傳字典長度</td></tr>
+          <tr><td>dict.randomkeys{dict n}</td><td>any</td><td><a href="#method">method</a></td><td>隨機從key抽取 n 個元素 (n 可省略)</td></tr>
+          <tr><td>dict.randomitems{dict n}</td><td>any</td><td><a href="#method">method</a></td><td>隨機從item抽取 n 個元素 (n 可省略)</td></tr>
+          <tr><td>dict.del{dict key}</td><td>any</td><td><a href="#method">method</a></td><td>刪除指定key</td></tr>
       <tr><td rowspan="4">
         <b>string</b>
           </td><td>str.upper{text}</td><td>str</td><td><a href="#method">method</a></td><td>轉為全大寫</td></tr>
           <tr><td>str.lower{text}</td><td>str</td><td><a href="#method">method</a></td><td>轉為全小寫</td></tr>
           <tr><td>str.replace{text a b}</td><td>list</td><td><a href="#method">method</a></td><td>以指定文字a取代文字b</td></tr>
           <tr><td>str.split{text sep}</td><td>list</td><td><a href="#method">method</a></td><td>以指定字串分割文字</td></tr>
-      <tr><td rowspan="6">
+      <tr><td rowspan="7">
         <b>system</b>
           </td><td>turntype{val type}</td><td>any</td><td><a href="#method">method</a></td><td>轉換型態 (str, int, float, list)</td></tr>
           <tr><td>type{val}</td><td>str</td><td><a href="#method">method</a></td><td>確認變數型態</td></tr>
@@ -234,7 +243,7 @@
         <li><b>迭代次數：</b>單次 <code>for</code> 迴圈迭代次數上限為 5 次。</li>
         <li><b>語法嚴謹：</b>遺漏分號 <code>;</code> 或關鍵字邊界將導致直譯器報錯並中止執行。</li>
         <li><b>特殊語法：</b>字串相加、列出lib內容(&lt;lib&gt;.variables &lt;lib&gt;.functions)、字串可用\n換行</li>
-        <li><b>嚴格賦值：</b>某些語法僅接受在外側定義後再傳入。</li>
+        <li><b>嚴格賦值：</b>某些語法僅接受在外側定義後再傳入。<b>Dict type不可用預設值定義。</b></li>
       </ul>
     </div>
   </section>
