@@ -93,6 +93,47 @@ begin;
     output{'https://http.dog/' + code};
 end;</code></pre>
     </div>
+    <h2>損失函式程式範例</h2>
+    <div class="code-block">
+      <pre><code>// Provider: command_cat
+        
+#load &lt;message&gt;
+func calculate_mse{y_true y_pred};
+    error =  y_true - y_pred;
+    result = error * error;
+    sendback{result};
+endfunc;
+func calculate_msa{y_true y_pred};
+    result =  y_pred - y_true;
+    sendback{abs{result}};
+endfunc;
+begin;
+    msg = message.content;
+    msg_list = turntype{msg list};
+    count = list.count{msg_list " "};
+    if {count != 2};
+        output{"找不到空格隔開的兩個值"};
+    else;
+        splited = str.split{msg ' '};
+        target = list.get{splited 1};
+        guess = list.get{splited 2};
+    endif;
+    try;
+        target = turntype{target float};
+        guess = turntype{guess float};
+     except;
+         output{'兩值須為數字'};
+     endtry;
+     try;
+        mseloss = call calculate_mse{target guess};
+        msaloss = call calculate_msa{target guess};
+        output{target " 與 " guess " 進行計算\n損失值：" mseloss "\n平方損失值：" msaloss};
+    except {error};
+       output{"計算時出現錯誤\n以下為錯誤訊息\n" + error};
+    endtry;
+end;
+      </code></pre>
+    </div>
   </section>
 
 

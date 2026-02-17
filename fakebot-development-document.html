@@ -49,17 +49,17 @@
     <div class="code-block">
       <button class="copy-btn">複製</button>
       <pre><code>#load &lt;lib&gt; // 載入內建庫
-  begin; // 主程式開始
-    try; // 嘗試區塊
-      // 變數賦值
-      val = 100;
-      // 輸出結果 (必填)
-      output {"結果是: " + val};
-    except {error}; // 將錯誤訊息放進error變數
-      output {"Error" + error}; // 用輸出而非錯誤訊息回傳以免意外終止程式
-    // except; 不進行變數賦值
-    endtry;
-  end; // 主程式結束</code></pre>
+begin; // 主程式開始
+  try; // 嘗試區塊
+    // 變數賦值
+    val = 100;
+    // 輸出結果 (必填)
+    output {"結果是: " + val};
+  except {error}; // 將錯誤訊息放進error變數
+    output {"Error" + error}; // 用輸出而非錯誤訊息回傳以免意外終止程式
+  // except; 不進行變數賦值
+  endtry;
+end; // 主程式結束</code></pre>
     </div>
     <table>
       <tr><th>指令/關鍵字</th><th>範例</th><th>說明</th></tr>
@@ -79,23 +79,23 @@
     <div class="code-block">
       <button class="copy-btn">複製</button>
       <pre><code>if {條件1};
-    output {"情況 A"};
-  elif {條件2};
-    output {"情況 B"};
-  else;
-    output {"其他情況"};
-  endif;</code></pre>
+  output {"情況 A"};
+elif {條件2};
+  output {"情況 B"};
+else;
+  output {"其他情況"};
+endif;</code></pre>
     </div>
 
     <div class="code-block">
       <button class="copy-btn">複製</button>
       <pre><code>if {條件1 or 條件2}; // if {條件1 || 條件2};
-    output {"情況 A"};
-  elif {條件3 and 條件4}; // elif {條件3 && 條件4};
-    output {"情況 B"};
-  else;
-    output {"其他情況"};
-  endif;</code></pre>
+  output {"情況 A"};
+elif {條件3 and 條件4}; // elif {條件3 && 條件4};
+  output {"情況 B"};
+else;
+  output {"其他情況"};
+endif;</code></pre>
     </div>
 
     <div class="warning-card">
@@ -117,18 +117,18 @@
         <h3>函式定義語法</h3>
         <button class="copy-btn">複製</button>
         <pre><code>func &lt;名稱&gt; {參數1 參數2};
-    res = 參數1 + 參數2;
-    sendback {res}; 
-  endfunc;</code></pre>
+  res = 參數1 + 參數2;
+  sendback {res}; 
+endfunc;</code></pre>
       </div>
       <div class="card code-block">
         <h3>如何調用函式</h3>
         <button class="copy-btn">複製</button>
         <pre><code>begin;
-    // 使用 call 關鍵字調用
-    res = call &lt;名稱&gt;{10 20};
-    output {res};
-  end;</code></pre>
+  // 使用 call 關鍵字調用
+  res = call &lt;名稱&gt;{10 20};
+  output {res};
+end;</code></pre>
       </div>
     </div>
 
@@ -150,13 +150,13 @@
         <h3>如何調用方法</h3>
         <button class="copy-btn">複製</button>
         <pre><code>begin;
-    // 不須使用 call 關鍵字調用
-    wait{0.2}; // 等待0.2秒
-    val1 = min{1 2}; // 取兩者最小值
-    val2 = max{1 2}; // 取兩者最大值
-    val3 = abs{-5}; // 取數值之絕對值
-    // output {};
-  end;</code></pre>
+  // 不須使用 call 關鍵字調用
+  wait{0.2}; // 等待0.2秒
+  val1 = min{1 2}; // 取兩者最小值
+  val2 = max{1 2}; // 取兩者最大值
+  val3 = abs{-5}; // 取數值之絕對值
+  // output {};
+end;</code></pre>
       </div>
     </div>
 
@@ -255,22 +255,22 @@
       <pre><code>#load &lt;time&gt;
 #load &lt;message&gt;
 
-  func welcome {name};
-    res = "你好, " + name;
-    sendback {res};
-  endfunc;
+func welcome {name};
+  res = "你好, " + name;
+  sendback {res};
+endfunc;
 
-  begin;
-    user = message.username;
-    greet = call welcome{user};
+begin;
+  user = message.username;
+  greet = call welcome{user};
       
-    for i in 3;
-      nowstamp = round{time.timestamp 0};
-      output_msg = greet + " 第 " + i + " 次打招呼\n現在的timestamp是:" + nowtimestamp;
-    endfor;
+  for i in 3;
+    nowstamp = round{time.timestamp 0};
+    output_msg = greet + " 第 " + i + " 次打招呼\n現在的timestamp是:" + nowtimestamp;
+  endfor;
       
-    output {output_msg};
-  end;</code></pre>
+  output {output_msg};
+end;</code></pre>
     </div>
   </section>
 
