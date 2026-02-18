@@ -27,13 +27,8 @@
       <nav>
         <ul>
           <li><a href="index.html">主頁面</a></li>
-          <li><a href="#syntax">核心語法</a></li>
-          <li><a href="#control-flow">流程控制</a></li>
-          <li><a href="#functions">函式定義</a></li>
-          <li><a href="#method">方法介紹</a></li>
-          <li><a href="#libs">內建庫</a></li>
-          <li><a href="#example">完整範例</a></li>
-          <li><a href="fakebot-function-generator.html">生成器</a></li>
+          <li><a href="rpg-development-document-v1.5.html">RPG開發文檔(Latest)</a></li>
+          <li><a href="fakebot-development-document.html">分身機器人開發文檔(Latest)</a></li>
         </ul>
       </nav>
     </div>
@@ -90,7 +85,7 @@ begin;
     if {code &lt; 100 or code &gt; 599};
         output{'附帶的code範圍必須為100~599'};
     endif;
-    output{'https://http.dog/' + code};
+    output{'https://http.dog/' + code + '.jpg'};
 end;</code></pre>
     </div>
     <h2>損失函式程式範例</h2>
@@ -131,8 +126,38 @@ begin;
     except {error};
        output{"計算時出現錯誤\n以下為錯誤訊息\n" + error};
     endtry;
-end;
-      </code></pre>
+end;</code></pre>
+    </div>
+    <h2>許願程式範例</h2>
+    <div class="code-block">
+      <pre><code>// Provider: lmr0811
+        
+#load <message>
+#load <time>
+
+begin;
+    user = message.username;
+    status_list = ["大吉","中吉","小吉","末吉","大凶","小兇","Skill Issue:skull:","User Issue:skull:","邏輯崩潰(?","通靈失敗(?"];
+
+    msg = ":crystal_ball: 正在讀取 ";
+    msg = msg + user;
+    msg = msg + " 的靈魂數據...\n";
+
+    msg = msg + "▓▓▓▓▓▓▓▓▓▓▓";
+    wait{0.5};
+
+    res_temp = list.random{status_list 1};
+    res = list.get{res_temp 0};
+
+    final_msg = msg;
+    final_msg = final_msg + " 100%\n\n";
+    final_msg = final_msg + ":sparkles: 診斷結果：";
+    final_msg = final_msg + res;
+    final_msg = final_msg + "\n:alarm_clock: 鑑定時間：";
+    final_msg = final_msg + time.asctime;
+
+    output {final_msg};
+end;</code></pre>
     </div>
   </section>
 

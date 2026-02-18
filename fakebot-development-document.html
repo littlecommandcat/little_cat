@@ -155,7 +155,7 @@ end;</code></pre>
   val1 = min{1 2}; // 取兩者最小值
   val2 = max{1 2}; // 取兩者最大值
   val3 = abs{-5}; // 取數值之絕對值
-  // output {};
+  output {}; // 必要輸出
 end;</code></pre>
       </div>
     </div>
@@ -219,10 +219,12 @@ end;</code></pre>
         <b>string</b>
           </td><td>str.upper{text}</td><td>str</td><td><a href="#method">method</a></td><td>轉為全大寫</td></tr>
           <tr><td>str.lower{text}</td><td>str</td><td><a href="#method">method</a></td><td>轉為全小寫</td></tr>
+          <tr><td>str.title{text}</td><td>str</td><td><a href="#method">method</a></td><td>開頭轉為大寫</td></tr>
+          <tr><td>str.length{text}</td><td>int</td><td><a href="#method">method</a></td><td>計算字串長度</td></tr>
           <tr><td>str.replace{text a b}</td><td>list</td><td><a href="#method">method</a></td><td>以指定文字a取代文字b</td></tr>
           <tr><td>str.split{text sep}</td><td>list</td><td><a href="#method">method</a></td><td>以指定字串分割文字</td></tr>
       <tr><td rowspan="7">
-        <b>system</b>
+        <b>system (buildin)</b>
           </td><td>turntype{val type}</td><td>any</td><td><a href="#method">method</a></td><td>轉換型態 (str, int, float, list)</td></tr>
           <tr><td>type{val}</td><td>str</td><td><a href="#method">method</a></td><td>確認變數型態</td></tr>
           <tr><td>wait{time}</td><td>none</td><td><a href="#method">method</a></td><td>暫停執行 (限制 0.1 ~ 0.5 秒)</td></tr>

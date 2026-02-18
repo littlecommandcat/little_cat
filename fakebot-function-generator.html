@@ -4,6 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>分身機器人 - 生成器</title>
+  <meta name="description" content="小喵喵是一款強大的 Discord 機器人，支援跨群語音、音樂播放、管理功能、客服單與安全系統。" />
+  <meta name="keywords" content="小喵喵, discord, discord bot, 音樂, music, antinuke, safty, littlecat, guild, chat, voice" />
+  <meta property="og:title" content="小喵喵 Discord Bot" />
+  <meta property="og:description" content="音樂、管理、安全、跨群功能集一身的多功能機器人。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="cat.png">
+  <link rel="icon" href="cat.png" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <!-- <link rel="stylesheet" type="text/css" href="style/index.css"> -->
   <link rel="stylesheet" type="text/css" href="style/generator.css">
@@ -20,6 +27,7 @@
 
       <nav>
         <ul>
+          <li><a href="index.html">主頁面</a></li>
           <li><a href="rpg-development-document-v1.5.html">RPG開發文檔(Latest)</a></li>
           <li><a href="fakebot-development-document.html">分身機器人開發文檔(Latest)</a></li>
           <li><a href="fakebot-example.html">分身機器人公開範例</a></li>
@@ -56,6 +64,7 @@
       <div class="code-block">
         <button class="copy-btn" onclick="copyfunctionResult()">複製</button>
         <pre><code id="functiongeneratedCode"></code></pre>
+        <div class="function-version"></div>
       </div>
       <div class="warning-card">
         <strong>提示：</strong> 生成的 <code>sendback</code> 已自動連結至邏輯結果。可以將此區塊貼到測試區進行測試。
@@ -104,7 +113,7 @@
   </main>
 
   <footer>
-    <p>© 2026 小喵喵 Discord Bot. Logic Generator v1.0</p>
+    <p>© 2026 小喵喵 Discord Bot. All rights reserved.</p>
   </footer>
 
   <script src="script/generator.js"></script>
