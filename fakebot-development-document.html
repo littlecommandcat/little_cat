@@ -31,7 +31,9 @@
           <li><a href="#control-flow">流程控制</a></li>
           <li><a href="#functions">函式定義</a></li>
           <li><a href="#method">方法介紹</a></li>
-          <li><a href="#libs">內建庫</a></li>
+          <li><a href="#libs-variables">內建庫</a></li>
+          <li><a href="#constraints">安全驗證</a></li>
+          <li><a href="#ai-prompt">生成提示詞</a></li>
           <li><a href="#example">完整範例</a></li>
           <li><a href="fakebot-function-generator.html">生成器</a></li>
           <li><a href="fakebot-example.html">公開範例</a></li>
@@ -171,18 +173,18 @@ end;</code></pre>
   </section>
 
 
-  <section id="libs" class="container">
+  <section id="libs-variables" class="container">
     <h2>內建庫與函數註冊</h2>
     <table>
       <tr><th>類別</th><th>函數/屬性</th><th>回傳型態</th><th>類型</th><th>說明</th></tr>
       <tr><td rowspan="4">
-        <b>math lib</b>
+        <b>math (library)</b>
           </td><td>math.pi / math.e</td><td>float</td><td>variable</td><td>圓周率與自然常數</td></tr>
           <tr><td>math.add{a b}</td><td>float</td><td><a href="#functions">function</a></td><td>回傳 a + b 的結果</td></tr>
           <tr><td>math.multiple{a b}</td><td>float</td><td><a href="#functions">function</a></td><td>回傳 a * b 的結果</td></tr>
           <tr><td>math.subtruct{a b}</td><td>float</td><td><a href="#functions">function</a></td><td>回傳 a - b 的結果</td></tr>
       <tr><td rowspan="7">
-        <b>message lib</b>
+        <b>message (library)</b>
           </td><td>message.username</td><td>str</td><td>variable</td><td>訊息作者名稱</td></tr>
           <tr><td>message.userid</td><td>int</td><td>variable</td><td>訊息作者 ID</td></tr>
           <tr><td>message.id</td><td>int</td><td>variable</td><td>訊息 ID</td></tr>
@@ -191,13 +193,14 @@ end;</code></pre>
           <tr><td>message.prefix</td><td>str</td><td>variable</td><td>指令前綴字</td></tr>
           <tr><td>message.command</td><td>str</td><td>variable</td><td>指令名稱</td></tr>
       <tr><td rowspan="2">
-        <b>requests lib</b>
+        <b>requests (library)</b>
           </td><td>requests.get{url headers params}</td><td>data</td><td><a href="#functions">function</a></td><td>進行get並附帶headers和params</td></tr>
           <tr><td>requests.post{url headers json}</td><td>data</td><td><a href="#functions">function</a></td><td>進行post並附帶headers和json</td></tr>
-      <tr><td rowspan="2">
-        <b>time lib</b>
+      <tr><td rowspan="3">
+        <b>time (library)</b>
           </td><td>time.timestamp</td><td>float</td><td>variable</td><td>取得目前的timestamp</td></tr>
           <tr><td>time.asctime</td><td>str</td><td>variable</td><td>取得目前的asctime</td></tr>
+          <tr><td>time.today</td><td>str</td><td>variable</td><td>取得目前的strtime</td></tr>
       <tr><td rowspan="6">
         <b>list</b>
           </td><td>list.add{list val}</td><td>none</td><td><a href="#method">method</a></td><td>在列表末尾新增一個元素</td></tr>
@@ -215,7 +218,7 @@ end;</code></pre>
           <tr><td>dict.randomkeys{dict n}</td><td>any</td><td><a href="#method">method</a></td><td>隨機從key抽取 n 個元素 (n 可省略)</td></tr>
           <tr><td>dict.randomitems{dict n}</td><td>any</td><td><a href="#method">method</a></td><td>隨機從item抽取 n 個元素 (n 可省略)</td></tr>
           <tr><td>dict.del{dict key}</td><td>any</td><td><a href="#method">method</a></td><td>刪除指定key</td></tr>
-      <tr><td rowspan="4">
+      <tr><td rowspan="6">
         <b>string</b>
           </td><td>str.upper{text}</td><td>str</td><td><a href="#method">method</a></td><td>轉為全大寫</td></tr>
           <tr><td>str.lower{text}</td><td>str</td><td><a href="#method">method</a></td><td>轉為全小寫</td></tr>
@@ -224,7 +227,7 @@ end;</code></pre>
           <tr><td>str.replace{text a b}</td><td>list</td><td><a href="#method">method</a></td><td>以指定文字a取代文字b</td></tr>
           <tr><td>str.split{text sep}</td><td>list</td><td><a href="#method">method</a></td><td>以指定字串分割文字</td></tr>
       <tr><td rowspan="7">
-        <b>system (buildin)</b>
+        <b>system</b>
           </td><td>turntype{val type}</td><td>any</td><td><a href="#method">method</a></td><td>轉換型態 (str, int, float, list)</td></tr>
           <tr><td>type{val}</td><td>str</td><td><a href="#method">method</a></td><td>確認變數型態</td></tr>
           <tr><td>wait{time}</td><td>none</td><td><a href="#method">method</a></td><td>暫停執行 (限制 0.1 ~ 0.5 秒)</td></tr>
@@ -246,6 +249,20 @@ end;</code></pre>
         <li><b>語法嚴謹：</b>遺漏分號 <code>;</code> 或關鍵字邊界將導致直譯器報錯並中止執行。</li>
         <li><b>特殊語法：</b>字串相加、列出lib內容(&lt;lib&gt;.variables &lt;lib&gt;.functions)、字串可用\n換行</li>
         <li><b>嚴格賦值：</b>某些語法僅接受在外側定義後再傳入。<b>Dict type不可用預設值定義。</b></li>
+        <li><b>內建庫提醒：</b>只有<b>結尾括號library</b>的才需要進行 <code>#load</code> ，其餘已內建於系統呼叫。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="ai-prompt" class="container">
+    <h2>生成提示詞 (Prompt)</h2>
+    <div class="warning-card">
+      <strong>AI製作Prompt：</strong>
+      <ul>
+        <li>1. 請完整看完定義介紹</li>
+        <li>2. 請詳讀Lib與Variable的介紹</li>
+        <li>3. 開始生成(請不要自己使用文檔以外的東西)</li>
+        <li><b>請將此網站原始碼(HTML)直接貼到AI進行生成</b></li>
       </ul>
     </div>
   </section>

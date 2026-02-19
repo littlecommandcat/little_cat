@@ -44,9 +44,10 @@
       <button class="copy-btn">複製</button>
       <pre><code>// Provider: command_cat
 
-#load &lt;message&gt;
+#load <message>
 begin;
     msg = message.content;
+    ok_codes = [200, 201, 202, 203, 204, 205, 206,300, 301, 302, 303, 304, 305, 307, 308,400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 421, 422, 426, 429, 500, 501, 502, 503, 504, 505, 506, 507, 508, 510, 511];
     if {str.count{msg ' '} == 0};
         output{'請附帶一個http code'};
     endif;
@@ -57,8 +58,9 @@ begin;
     except;
         output{'附帶的code必須為整數'};
     endtry;
-    if {code &lt; 100 or code &gt; 599};
-        output{'附帶的code範圍必須為100~599'};
+    test = list.count{ok_codes code};
+    if {test == 0};
+        code = 404;
     endif;
     output{'https://http.cat/' + code};
 end;</code></pre>
@@ -82,9 +84,6 @@ begin;
     except;
         output{'附帶的code必須為整數'};
     endtry;
-    if {code &lt; 100 or code &gt; 599};
-        output{'附帶的code範圍必須為100~599'};
-    endif;
     output{'https://http.dog/' + code + '.jpg'};
 end;</code></pre>
     </div>
@@ -132,42 +131,34 @@ end;</code></pre>
     <div class="code-block">
       <pre><code>// Provider: lmr0811
         
-#load <message>
-#load <time>
-
+#load &lt;message&gt;
+#load &lt;time&gt;
 begin;
     user = message.username;
     status_list = ["大吉","中吉","小吉","末吉","大凶","小兇","Skill Issue:skull:","User Issue:skull:","邏輯崩潰(?","通靈失敗(?"];
-
     msg = ":crystal_ball: 正在讀取 ";
-    msg = msg + user;
-    msg = msg + " 的靈魂數據...\n";
-
-    msg = msg + "▓▓▓▓▓▓▓▓▓▓▓";
+    msg = msg + user + " 的靈魂數據...\n▓▓▓▓▓▓▓▓▓▓▓";
     wait{0.5};
-
     res_temp = list.random{status_list 1};
     res = list.get{res_temp 0};
-
     final_msg = msg;
     final_msg = final_msg + " 100%\n\n";
     final_msg = final_msg + ":sparkles: 診斷結果：";
     final_msg = final_msg + res;
     final_msg = final_msg + "\n:alarm_clock: 鑑定時間：";
     final_msg = final_msg + time.asctime;
-
     output {final_msg};
 end;</code></pre>
     </div>
   </section>
 
 
-  <!-- <section id="invite" class="cta">
-    <h2>準備好開始使用了嗎？</h2>
-    <a href="fakebot-function-generator.html">
-      <button class="btn-primary">立即使用生成器</button>
+  <section id="invite" class="cta">
+    <h2>想要嘗試使用AI生成嗎？</h2>
+    <a href="fakebot-development-document.html#ai-prompt">
+      <button class="btn-primary">AI提示詞</button>
     </a>
-  </section> -->
+  </section>
 
 
   <footer>
